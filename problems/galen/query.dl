@@ -1,0 +1,30 @@
+.decl p(X: number, Z: number)
+.decl q(X: number, Y: number, Z: number)
+.decl r(R: number, P: number, E: number)
+.decl c(Y: number, Z: number, W: number)
+.decl u(R: number, Z: number, W: number)
+.decl s(R: number, P: number)
+
+.input p(IO="file", filename="input/p.txt", delimiter=",")
+.input q(IO="file", filename="input/q.txt", delimiter=",")
+.input r(IO="file", filename="input/r.txt", delimiter=",")
+.input c(IO="file", filename="input/c.txt", delimiter=",")
+.input u(IO="file", filename="input/u.txt", delimiter=",")
+.input s(IO="file", filename="input/s.txt", delimiter=",")
+
+// p(X,Z)   :- p(X,Y), p(Y,Z).
+// q(X,Y,Z) :- p(X,W), q(W,Y,Z).
+// q(X,P,W) :- q(X,R,W), r(R,P).
+// p(X,W)   :- p(X,Y), p(X,Z), c(Y,Z,W).
+// p(X,W)   :- q(X,R,Y), p(Y,Z), u(R,Z,W).
+// q(X,Y,Z) :- q(X,R,W), q(W,P,Z), s(R,P,Y).
+
+p(x,z) :- p(x,y), p(y,z).
+q(x,r,z) :- p(x,y), q(y,r,z).
+p(x,z) :- p(y,w), u(w,r,z), q(x,r,y).
+p(x,z) :- c(y,w,z), p(x,w), p(x,y).
+q(x,q,z) :- q(x,r,z), s(r,q).
+q(x,e,o) :- q(x,y,z), r(y,u,e), q(z,u,o).
+
+.output p
+.output q
