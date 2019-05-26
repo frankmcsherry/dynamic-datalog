@@ -28,7 +28,7 @@ For each problem we record reported times for various systems in various configu
 
 Unlike other measurements, the Differential Dataflow measurements are for hand-written code in a larger language, and can reflect implementation and optimizations not easily available within Datalog.
 
-Souffle can often benefit from join planning help; without this help it can take orders of magnitude longer than it could. Such help is currently only provided for the Doop benchmark, and measurements for other queries could improve in the future.
+Souffle can often benefit from join planning help; without this help it can take orders of magnitude longer than it could. Such help is currently only provided for the Doop benchmark, and measurements for other queries could improve in the future (especially for those runs in which it did not finish in 1,000 seconds).
 
 #### The CRDT benchmark
 
