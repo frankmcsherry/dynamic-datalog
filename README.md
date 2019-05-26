@@ -1,5 +1,5 @@
 # dynamic-datalog
-Example queries and data for dynamic Datalog computation
+Engines, queries, and data for dynamic Datalog computation
 
 ---
 
