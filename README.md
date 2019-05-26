@@ -16,13 +16,13 @@ The repository also maintains several paired Datalog queries and input data, mea
 
 We also use the excellent [Souffle](https://souffle-lang.github.io) as a non-dynamic baseline.
 
-### The problems
+### Problems
 
 * [crdt](https://github.com/frankmcsherry/dynamic-datalog/tree/master/problems/crdt) - A [CRDT](https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type) implementation of a shared text editor, from [Martin Kleppmann](https://speakerdeck.com/ept/data-structures-as-queries-expressing-crdts-using-datalog?slide=22).
 * [doop](https://github.com/frankmcsherry/dynamic-datalog/tree/master/problems/doop) - A fragment of the [Doop](https://people.cs.umass.edu/~yannis/doop-datalog2.0.pdf) program analysis tool, from [Yannis Smaragdakis](https://yanniss.github.io).
-* [galen](https://github.com/frankmcsherry/dynamic-datalog/tree/master/problems/galen) - An inference task in the [GALEN](http://www.openclinical.org/prj_galen.html) medical ontology, from [John Liagouris](http://www.vldb.org/pvldb/vol7/p1993-liagouris.pdf)
+* [galen](https://github.com/frankmcsherry/dynamic-datalog/tree/master/problems/galen) - An inference task in the [GALEN](http://www.openclinical.org/prj_galen.html) medical ontology, from [John Liagouris](http://www.vldb.org/pvldb/vol7/p1993-liagouris.pdf).
 
-### The implementations
+### Evaulations
 
 For each problem we record reported times for various systems in various configurations, both to perform any query-specific compilation and then execution. These measurements are meant to be representative rather than definitive. All of the systems support multiple worker threads, and could be run in a variety of configurations on a variety of hardware platforms.
 
@@ -62,9 +62,9 @@ The DOOP benchmark is just really quite large.
 |----------------------:|--------------:|--------------:|------:|----------:|
 | Soufflé (interpreted) | 0s            | 1000s+ (DNF)  |     1 | Laptop    |
 | Soufflé (compiled)    | 9.31s         | 198.19s       |     1 | Laptop    |
-| Differential Dataflow |               |               |     1 | Laptop    |
+| Differential Dataflow | 111.59s       | 123.54s       |     1 | Laptop    |
 | Declarative Dataflow  | 0s            |               |       |           |
 | Differential Datalog  |               |               |       |           |
 | IncA                  |               |               |       |           |
 
-The GALEN bencmark contains joins on highly skewed keys, for which correct or adaptive join orders are important.
+The GALEN benchmark contains joins on highly skewed keys, for which correct or adaptive join orders are important. The most problematic rule (`IR4`) is presented in the least problematic order for binary joins.
