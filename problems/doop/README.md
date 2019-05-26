@@ -1,0 +1,1 @@
+The `doop` query and data come from Yannis Smaragdakis. The query is a simplification of [the Doop program analysis package](https://people.cs.umass.edu/~yannis/doop-datalog2.0.pdf) for the analysis of Java programs, and the data were extracted from a small Java program.

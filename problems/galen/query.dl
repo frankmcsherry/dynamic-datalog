@@ -5,12 +5,12 @@
 .decl u(R: number, Z: number, W: number)
 .decl s(R: number, P: number)
 
-.input p(IO="file", filename="input/p.txt", delimiter=",")
-.input q(IO="file", filename="input/q.txt", delimiter=",")
-.input r(IO="file", filename="input/r.txt", delimiter=",")
-.input c(IO="file", filename="input/c.txt", delimiter=",")
-.input u(IO="file", filename="input/u.txt", delimiter=",")
-.input s(IO="file", filename="input/s.txt", delimiter=",")
+.input p(IO="file", filename="p.txt", delimiter=",")
+.input q(IO="file", filename="q.txt", delimiter=",")
+.input r(IO="file", filename="r.txt", delimiter=",")
+.input c(IO="file", filename="c.txt", delimiter=",")
+.input u(IO="file", filename="u.txt", delimiter=",")
+.input s(IO="file", filename="s.txt", delimiter=",")
 
 // p(X,Z)   :- p(X,Y), p(Y,Z).
 // q(X,Y,Z) :- p(X,W), q(W,Y,Z).

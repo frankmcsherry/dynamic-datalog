@@ -92,17 +92,17 @@
 .decl MethodInvocation_Base(?invocation:MethodInvocation, ?base:Var)
 
 // Fat schema
-.decl LoadInstanceField(?base:Var, ?sig:Field, ?to:Var, ?inmethod:Method) 
-.decl StoreInstanceField(?from:Var, ?base:Var, ?signature:Field, ?inmethod:Method) 
-.decl LoadStaticField(?sig:Field, ?to:Var, ?inmethod:Method) 
-.decl StoreStaticField(?from:Var, ?signature:Field, ?inmethod:Method) 
-.decl LoadArrayIndex(?base:Var, ?to:Var, ?inmethod:Method) 
-.decl StoreArrayIndex(?from:Var, ?base:Var, ?inmethod:Method) 
-.decl AssignCast(?type:Type, ?from:Var, ?to:Var, ?inmethod:Method) 
-.decl AssignLocal(?from:Var, ?to:Var, ?inmethod:Method) 
-.decl AssignHeapAllocation(?heap:HeapAllocation, ?to:Var, ?inmethod:Method) 
-.decl ReturnVar(?var:Var, ?method:Method) 
-.decl StaticMethodInvocation(?invocation:MethodInvocation, ?signature:Method, ?inmethod:Method) 
+.decl LoadInstanceField(?base:Var, ?sig:Field, ?to:Var, ?inmethod:Method)
+.decl StoreInstanceField(?from:Var, ?base:Var, ?signature:Field, ?inmethod:Method)
+.decl LoadStaticField(?sig:Field, ?to:Var, ?inmethod:Method)
+.decl StoreStaticField(?from:Var, ?signature:Field, ?inmethod:Method)
+.decl LoadArrayIndex(?base:Var, ?to:Var, ?inmethod:Method)
+.decl StoreArrayIndex(?from:Var, ?base:Var, ?inmethod:Method)
+.decl AssignCast(?type:Type, ?from:Var, ?to:Var, ?inmethod:Method)
+.decl AssignLocal(?from:Var, ?to:Var, ?inmethod:Method)
+.decl AssignHeapAllocation(?heap:HeapAllocation, ?to:Var, ?inmethod:Method)
+.decl ReturnVar(?var:Var, ?method:Method)
+.decl StaticMethodInvocation(?invocation:MethodInvocation, ?signature:Method, ?inmethod:Method)
 
 // imports
 .decl _ClassType(?class:symbol)
