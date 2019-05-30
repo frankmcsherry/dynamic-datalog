@@ -1,1 +1,3 @@
 The `doop` query and data come from Yannis Smaragdakis. The query is a simplification of [the Doop program analysis package](https://people.cs.umass.edu/~yannis/doop-datalog2.0.pdf) for the analysis of Java programs, and the data were extracted from a small Java program.
+
+By consensus, the output `Reachable` relation should have 11,164 facts, the `VarPointsTo` relation should have 24,564,378 facts, and the `CallGraphEdge` relation should have 54,409 facts.

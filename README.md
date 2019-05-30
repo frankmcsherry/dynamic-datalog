@@ -14,7 +14,7 @@ The repository also maintains several paired Datalog queries and input data, mea
 * [Differential Datalog](https://github.com/ryzhyk/differential-datalog) - A compiler targeting Differential Dataflow.
 * [IncA](https://github.com/szabta89/IncA) - A framework for incremental program analysis with a Datalog-like language.
 
-We also use the excellent [Souffle](https://souffle-lang.github.io) as a non-dynamic baseline.
+We also use the excellent [Soufflé](https://souffle-lang.github.io) as a non-dynamic baseline.
 
 ### Problems
 
