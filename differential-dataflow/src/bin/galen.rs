@@ -40,11 +40,6 @@ fn main() {
                 let p_var = iterate::MonoidVariable::new(inner, Product::new(Default::default(), 1));
                 let q_var = iterate::MonoidVariable::new(inner, Product::new(Default::default(), 1));
 
-                // use differential_dataflow::operators::reduce::ReduceCore;
-                // use differential_dataflow::trace::implementations::ord::OrdKeySpine;
-                // let p_self = p_var.reduce_abelian::<_,OrdKeySpine<_,_,_>>(move |_,_,t| t.push(((), 1)));
-                // let q_self = q_var.reduce_abelian::<_,OrdKeySpine<_,_,_>>(move |_,_,t| t.push(((), 1)));
-
                 // accumulate
                 let p_new = p_var.distinct();
                 let q_new = q_var.distinct();
@@ -100,10 +95,10 @@ fn main() {
         let prefix = std::env::args().nth(1).expect("must specify path prefix");
 
         for (x,y,z) in load3(worker.index(), &prefix, "c.txt") { c.insert((x,y,z)); }
-        for (x,y) in load2(worker.index(), &prefix, "p.txt") { p.insert((x,y)); }
+        for (x,y)   in load2(worker.index(), &prefix, "p.txt") { p.insert((x,y));   }
         for (x,y,z) in load3(worker.index(), &prefix, "q.txt") { q.insert((x,y,z)); }
         for (x,y,z) in load3(worker.index(), &prefix, "r.txt") { r.insert((x,y,z)); }
-        for (x,y) in load2(worker.index(), &prefix, "s.txt") { s.insert((x,y)); }
+        for (x,y)   in load2(worker.index(), &prefix, "s.txt") { s.insert((x,y));   }
         for (x,y,z) in load3(worker.index(), &prefix, "u.txt") { u.insert((x,y,z)); }
 
     }).unwrap();

@@ -26,16 +26,16 @@ We also use the excellent [Soufflé](https://souffle-lang.github.io) as a non-dy
 
 For each problem we record reported times for various systems in various configurations, both to perform any query-specific compilation and then execution. These measurements are meant to be representative rather than definitive. All of the systems support multiple worker threads, and could be run in a variety of configurations on a variety of hardware platforms.
 
-Soufflé can often benefit from join planning help; without this help it can take orders of magnitude longer than it could. Such help is currently only provided for the Doop benchmark, and measurements for other queries could improve in the future (especially for those runs in which it did not finish in 1,000 seconds). The Soufflé measurements are all directly using the `query.dl` file from the decompressed `input` directory, either with the `-c` flag (for compilation) or without (for interpretation).
+Soufflé can often benefit from join planning help; without this help it can take orders of magnitude longer than it could. Such help is currently provided for the CRDT and Doop benchmarks, and measurements for other queries could improve in the future (especially for those runs in which it did not finish in 1,000 seconds). The Soufflé measurements are all directly using the `query.dl` file from the decompressed `input` directory, either with the `-c` flag (for compilation) or without (for interpretation).
 
-Unlike other measurements, the Differential Dataflow measurements are for hand-written code in a larger language, and can reflect implementation and optimizations not easily available within Datalog. Links to this code should be forthcoming (it's just in a few different places at the moment).
+Unlike other measurements, the Differential Dataflow measurements are for hand-written code in a larger language, and can reflect implementation and optimizations not easily available within Datalog. The code for each problem is in the `differential/` directory.
 
 #### The CRDT benchmark
 
 | Engine                | Compilation   | Evaluation    | Cores | Notes     |
 |----------------------:|--------------:|--------------:|------:|----------:|
 | Soufflé (interpreted) | 0s            | 1000s+ (DNF)  |     1 | Laptop    |
-| Soufflé (compiled)    | 10.15s        | 1000s+ (DNF)  |     1 | Laptop    |
+| Soufflé (compiled)    | 10.15s        | 294.73s       |     1 | Laptop    |
 | Differential Dataflow | 166.26s       | 3.44s         |     1 | Laptop    |
 | Declarative Dataflow  | 0s            |               |       |           |
 | Differential Datalog  |               |               |       |           |

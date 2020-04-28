@@ -120,7 +120,7 @@ hasValue(Elem) :- currentValue(Elem, _).
 
 .decl skipBlank(From: id, To: id)
 skipBlank(From, To) :- nextElem(From, To).
-skipBlank(From, To) :- nextElem(From, Via), !hasValue(Via), skipBlank(Via, To).
+skipBlank(From, To) :- skipBlank(Via, To), nextElem(From, Via), !hasValue(Via).
 
 .decl nextVisible(Prev: id, Next: id)
 nextVisible(Prev, Next) :- hasValue(Prev), skipBlank(Prev, Next), hasValue(Next).
