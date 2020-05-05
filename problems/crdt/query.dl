@@ -61,6 +61,11 @@ assign(id, id, "hi") :- insert(id, _).
 insert([a,b],[c,d]) :- insert_input(a,b,c,d).
 remove([a,b]) :- remove_input(a,b).
 
+.decl translate(record:id, crt:number, node:number) 
+translate([a,b],a,b) :- insert_input(a,b,_,_).
+translate([a,b],a,b) :- insert_input(_,_,a,b).
+translate([a,b],a,b) :- remove_input(a,b).
+
 .decl hasChild(Parent: id)
 hasChild(Parent) :- insert(_, Parent).
 
@@ -87,8 +92,9 @@ laterSibling([Ctr1,N1], [Ctr2,N2]) :-
 
 .decl laterSibling2(Sib1: id, Sib3: id)
 laterSibling2([Ctr1,N1], [Ctr3,N3]) :-
-  sibling([Ctr1,N1], [Ctr2,N2]),
-  sibling([Ctr1,N1], [Ctr3,N3]),
+  sibling(x, [Ctr2,N2]),
+  sibling(x, [Ctr3,N3]),
+  translate(x, Ctr1, N1),
   (Ctr1 > Ctr2; (Ctr1 = Ctr2, N1 > N2)),
   (Ctr2 > Ctr3; (Ctr2 = Ctr3, N2 > N3)).
 
@@ -101,9 +107,13 @@ nextSibling(Sib1, Sib2) :-
 hasNextSibling(Sib1) :-
   laterSibling(Sib1, _).
 
+.decl insertSiblingAnc(Start: id, Next: id)
+insertSiblingAnc(Start, Parent) :- 
+ !hasNextSibling(Start), insert(Start, Parent).
+
 .decl nextSiblingAnc(Start: id, Next: id)
 nextSiblingAnc(Start, Next) :- nextSibling(Start, Next).
-nextSiblingAnc(Start, Next) :- !hasNextSibling(Start), insert(Start, Parent), nextSiblingAnc(Parent, Next).
+nextSiblingAnc(Start, Next) :- nextSiblingAnc(Parent, Next), insertSiblingAnc(Start, Parent). 
 
 .decl nextElem(Prev: id, Next: id)
 nextElem(Prev, Next) :- firstChild(Prev, Next).
@@ -118,17 +128,21 @@ currentValue(Elem, Value) :- assign(ID, Elem, Value), !remove(ID).
 .decl hasValue(Elem: id)
 hasValue(Elem) :- currentValue(Elem, _).
 
+.decl nextNotValueElem(From: id, To: id)
+nextNotValueElem(From, Via) :- nextElem(From, Via), !hasValue(Via).
+
 .decl skipBlank(From: id, To: id)
-skipBlank(From, To) :- nextElem(From, To).
-skipBlank(From, To) :- skipBlank(Via, To), nextElem(From, Via), !hasValue(Via).
+skipBlank(From, To) :- nextElem(From, To), hasValue(To).
+skipBlank(From, To) :- skipBlank(Via, To), nextNotValueElem(From, Via).
 
 .decl nextVisible(Prev: id, Next: id)
-nextVisible(Prev, Next) :- hasValue(Prev), skipBlank(Prev, Next), hasValue(Next).
+nextVisible(Prev, Next) :- hasValue(Prev), skipBlank(Prev, Next).
 
 
 // Output
-
 .decl result(ctr1: number, ctr2: number, value: string)
-result(ctr1, ctr2, value) :- nextVisible([ctr1, _], [ctr2, node2]), currentValue([ctr2, node2], value).
+result(ctr1, ctr2, value) :- nextVisible(x,y), currentValue(y, value), 
+                             translate(x, ctr1, _), 
+                             translate(y, ctr2, _). 
 
 .output result
