@@ -37,8 +37,8 @@ fn main() {
                 use differential_dataflow::operators::arrange::ArrangeBySelf;
 
                 // create new variables
-                let p_var = iterate::MonoidVariable::new(inner, Product::new(Default::default(), 1));
-                let q_var = iterate::MonoidVariable::new(inner, Product::new(Default::default(), 1));
+                let p_var = iterate::SemigroupVariable::new(inner, Product::new(Default::default(), 1));
+                let q_var = iterate::SemigroupVariable::new(inner, Product::new(Default::default(), 1));
 
                 // accumulate
                 let p_new = p_var.distinct();
